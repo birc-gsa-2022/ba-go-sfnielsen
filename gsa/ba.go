@@ -6,7 +6,24 @@ package gsa
 // a prefix and a suffix of x[:i+1].
 func Borderarray(x string) []int {
 	ba := make([]int, len(x))
-	// FIXME
+
+	b := 0
+	i := 1
+	for i < len(x) {
+		if x[b] == x[i] {
+			b++
+			ba[i] = b
+			i++
+			continue
+		}
+		if b > 0 {
+			b = ba[b-1]
+			continue
+		}
+		ba[i] = 0
+		i++
+	}
+
 	return ba
 }
 
