@@ -20,7 +20,6 @@ func Borderarray(x string) []int {
 			b = ba[b-1]
 			continue
 		}
-		ba[i] = 0
 		i++
 	}
 
@@ -32,6 +31,37 @@ func Borderarray(x string) []int {
 // longest proper border of the string x[:i+1] such that x[ba[i]] != x[i].
 func StrictBorderarray(x string) []int {
 	ba := make([]int, len(x))
-	// FIXME
+
+	b := 0
+	i := 1
+	for i < len(x) {
+		if x[b] == x[i] {
+			b++
+			if i == len(x)-1 {
+				ba[i] = b
+			}
+			i++
+			continue
+		}
+		if ba[i-1] == 0 {
+			ba[i-1] = b
+		}
+		if b > 0 {
+			b = ba[b-1]
+			continue
+		}
+		i++
+	}
 	return ba
+
+	/* **simpler but 2*n solution***
+
+	ba = Borderarray(x)
+	for i := 1; i < len(ba); i++ {
+		if ba[i-1] == ba[i]-1 {
+			ba[i-1] = 0
+		}
+	}
+	return ba
+	*/
 }
