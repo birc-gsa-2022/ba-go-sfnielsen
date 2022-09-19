@@ -1,6 +1,7 @@
 package gsa_test
 
 import (
+	"fmt"
 	"math/rand"
 	"reflect"
 	"testing"
@@ -211,4 +212,11 @@ func Test_StrictBorderarray(t *testing.T) {
 			checkBorders(t, x, ba)
 			checkStrict(t, x, ba)
 		})
+}
+
+func Test_myTest(t *testing.T) {
+
+	result := gsa.StrictBorderarray("abaabaaabaabaa")
+
+	fmt.Println(result)
 }
